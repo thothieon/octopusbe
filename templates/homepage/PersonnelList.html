@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <title>PersonnelList</title>
+
+    <!-- Font-icon css-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    {% block extracss %}
+    {% endblock extracss %}
+</head>
+
+<body>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <h1 style="text-align:center">PersonnelList test world</h1>
+            <hr>
+            <table class="table table-dark table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>年分</th>
+                    <th>身分</th>
+                    <th>等級</th>
+                    <th>名字</th>
+                    <th>電話</th>
+                    <th>身分證字號</th>
+                    <th>MID</th>
+                </thead>
+                <tbody>
+                    {% for readDatah in readData %}
+                    <tr>
+                        <td>{{ readDatah.id }}</td>
+                        <td>{{ readDatah.joinYear }}</td>
+                        <td>{{ readDatah.latestLicense }}</td>
+                        <td>{{ readDatah.identity }}</td>
+                        <td>{{ readDatah.chineseName }}</td>
+                        <td>{{ readDatah.mobilePhone }}</td>
+                        <td>{{ readDatah.idNumber }}</td>
+                        <td>{{ readDatah.mid }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+</body>
+
+</html>
