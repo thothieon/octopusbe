@@ -36,7 +36,11 @@ def home(request):
 
 def PersonnelInformation(request):
     print('PersonnelInformation_init')
-    readData = personnelinformation.objects.all().order_by('id','joinYear')
+    
+    readData = personnelinformation.objects.all()
+    #readData = personnelinformation.objects.all().order_by('id').order_by('joinYear')
+    #readData = personnelinformation.objects.all().order_by('id').values()
+    
     print('readData', readData.query)
     return render(request, 'PersonnelInformation.html', {'readData':readData})
 
