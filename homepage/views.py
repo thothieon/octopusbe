@@ -6,7 +6,8 @@ import sys
 from django.views.generic import View
 from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import dbtest, personnelinformation
@@ -37,11 +38,16 @@ def home(request):
 def PersonnelInformation(request):
     print('PersonnelInformation_init')
     
-    readData = personnelinformation.objects.all()
+    #readData = personnelinformation.objects.all()
     #readData = personnelinformation.objects.all().order_by('id').order_by('joinYear')
     #readData = personnelinformation.objects.all().order_by('id').values()
+
+    book_list = personnelinformation.objects.all()
+    paginator = Paginator(book_list, 10)  # 每页显示50条数据
+    page_number = request.GET.get('page')
+    readData = paginator.get_page(page_number)
     
-    print('readData', readData.query)
+    #print('readData', readData.query)
     return render(request, 'PersonnelInformation.html', {'readData':readData})
 
 def PersonnelList(request):

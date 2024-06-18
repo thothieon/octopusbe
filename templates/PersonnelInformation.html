@@ -30,6 +30,8 @@
                     <th>名字</th>
                     <th>電話</th>
                     <th>身分證字號</th>
+                    <th>MID</th>
+                    <th>Note</th>
                 </thead>
                 <tbody>
                     {% for readDatah in readData %}
@@ -41,10 +43,31 @@
                         <td>{{ readDatah.chineseName }}</td>
                         <td>{{ readDatah.mobilePhone }}</td>
                         <td>{{ readDatah.idNumber }}</td>
+                        <td>{{ readDatah.mid }}</td>
+                        <td>{{ readDatah.note }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if readData.has_previous %}
+                    <a href="?page=1">&laquo; first</a> &nbsp;
+                    <a href="?page={{ readData.previous_page_number }}">previous</a> &nbsp;
+                    {% endif %}
+                    
+                    <span class="current">
+                        Page {{ readData.number }} of {{ readData.paginator.num_pages }}.
+                    </span>
+            
+                    {% if readData.has_next %}
+                    &nbsp;
+                    <a href="?page={{ readData.next_page_number }}">next</a> &nbsp;
+                    <a href="?page={{ readData.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
         <div class="col"></div>
     </div>
