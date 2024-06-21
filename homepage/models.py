@@ -27,4 +27,5 @@ class personnelinformation(models.Model):
     mobilePhone = models.CharField('電話', max_length=255)
     idNumber = models.CharField('身分證字號', max_length=255)
     mid = models.CharField('mid', max_length=255)
+    note = models.CharField('note', max_length=255)
  
